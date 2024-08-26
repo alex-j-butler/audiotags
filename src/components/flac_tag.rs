@@ -280,6 +280,10 @@ impl AudioTagEdit for FlacTag {
     fn remove_comment(&mut self) {
         self.remove("COMMENT");
     }
+
+    fn soundswitch_id(&self) -> Option<&str> {
+        self.get_first("SOUNDSWITCH_ID")
+    }
 }
 
 impl AudioTagWrite for FlacTag {

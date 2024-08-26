@@ -25,6 +25,7 @@ impl<'a> From<&'a Id3v2Tag> for AnyTag<'a> {
             genre: inp.genre(),
             composer: inp.composer(),
             comment: inp.comment(),
+            soundswitch_id: inp.soundswitch_id(),
         }
     }
 }
@@ -256,6 +257,14 @@ impl AudioTagEdit for Id3v2Tag {
     }
     fn remove_comment(&mut self) {
         self.inner.remove("COMM");
+    }
+
+    fn soundswitch_id(&self) -> Option<&str> {
+        if let Some(Content::Text(text)) = self.inner.get("SOUNDSWITCH_ID").map(Frame::content) {
+            return Some(text);
+        }
+
+        None
     }
 }
 

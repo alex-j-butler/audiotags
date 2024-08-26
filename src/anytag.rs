@@ -19,6 +19,7 @@ pub struct AnyTag<'a> {
     pub genre: Option<&'a str>,
     pub composer: Option<&'a str>,
     pub comment: Option<&'a str>,
+    pub soundswitch_id: Option<&'a str>,
 }
 
 impl AudioTagConfig for AnyTag<'_> {
@@ -82,6 +83,9 @@ impl<'a> AnyTag<'a> {
     }
     pub fn comment(&self) -> Option<&str> {
         self.comment
+    }
+    pub fn soundswitch_id(&self) -> Option<&str> {
+        self.soundswitch_id
     }
 }
 

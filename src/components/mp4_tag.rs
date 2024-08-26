@@ -28,6 +28,7 @@ impl<'a> From<&'a Mp4Tag> for AnyTag<'a> {
         let genre = inp.genre();
         let composer = inp.composer();
         let comment = inp.comment();
+        let soundswitch_id = inp.soundswitch_id();
         Self {
             config: inp.config,
             title,
@@ -45,6 +46,7 @@ impl<'a> From<&'a Mp4Tag> for AnyTag<'a> {
             genre,
             composer,
             comment,
+            soundswitch_id,
         }
     }
 }
@@ -312,6 +314,10 @@ impl AudioTagEdit for Mp4Tag {
     }
     fn remove_comment(&mut self) {
         self.inner.remove_comments();
+    }
+
+    fn soundswitch_id(&self) -> Option<&str> {
+        None
     }
 }
 
